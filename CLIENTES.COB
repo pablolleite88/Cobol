@@ -42,4 +42,13 @@
                MOVE WRK-SALDO TO WRK-SALDO-ED.
            DISPLAY "SALDO: " WRK-SALDO-ED.
            DISPLAY "-----------------"      
+
+           IF WRK-SALDO GREATER THAN OR equal 5000
+               DISPLAY WRK-NOME
+               MOVE WRK-SALDO TO WRK-SALDO-ED
+               DISPLAY "SALDO " WRK-SALDO-ED
+           END-IF.
+
+
+
            STOP RUN.
