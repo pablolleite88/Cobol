@@ -1,0 +1,6 @@
+       IDENTIFICATION     DIVISION.
+
+       PROGRAM-ID. OLAMUNDO.
+       PROCEDURE          DIVISION.
+           DISPLAY "OLA MUNDO"
+           STOP RUN.
