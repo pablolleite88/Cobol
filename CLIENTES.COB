@@ -32,7 +32,7 @@
            DISPLAY "-----------------"      
 
       *--------MULTIPLICACAO
-           MULTIPLY WRK-SALDO BY 2 GIVING WRK-SALDO
+           COMPUTE WRK-SALDO = WRK-SALDO * 2
                MOVE WRK-SALDO TO WRK-SALDO-ED.
            DISPLAY "SALDO: " WRK-SALDO-ED.
            DISPLAY "-----------------"       
