@@ -1,54 +1,44 @@
-       IDENTIFICATION          DIVISION.
-
+       IDENTIFICATION        DIVISION.
        PROGRAM-ID. CLIENTES.
-      *    AQUI TEMOS UM COMENTARIO
-       ENVIRONMENT             DIVISION.
-       CONFIGURATION           SECTION.
+      * COMENTARIO
+       ENVIRONMENT           DIVISION.
+       CONFIGURATION         SECTION.
        SPECIAL-NAMES.
-           DECIMAL-POINT       IS COMMA.
-       DATA                    DIVISION.
-       WORKING-STORAGE         SECTION.
-       01  WRK-NOME            PIC X(20) VALUE SPACES.
-       01  WRK-SALDO           PIC S9(10) VALUE ZEROS.
-       01  WRK-SALDO-ED        PIC Z.ZZZ.ZZZ.ZZ9,99. 
-       PROCEDURE               DIVISION.
+           DECIMAL-POINT     IS COMMA.
+
+
+       DATA                  DIVISION.
+       WORKING-STORAGE       SECTION.
+       01  WRK-NOME          PICTURE X(20)   VALUE SPACES.
+       01  WRK-SALDO         PICTURE S9(10)  COMP VALUE ZEROS.
+       01  WRK-SALDO-ED      PICTURE Z.ZZZ.ZZZ.ZZ9,99.
+       01  WRK-TIPO-CONTA    PICTURE 9.
+
+       PROCEDURE             DIVISION.
            DISPLAY "DIGITE SEU NOME "
                ACCEPT WRK-NOME.
            DISPLAY "DIGITE SEU SALDO "
                ACCEPT WRK-SALDO.
-           DISPLAY "-----------------"    
+           DISPLAY "QUAL TIPO DE CONTA (1-FISICA 2-JURIDICA) ? ".
+               ACCEPT WRK-TIPO-CONTA.
+      ******************************OPERADOR LOGICO*********************
+           IF WRK-SALDO GREATER THAN OR EQUAL  5000  AND
+             (WRK-TIPO-CONTA EQUAL 1 OR WRK-TIPO-CONTA EQUAL 2 )
 
-           DISPLAY WRK-NOME.
-      *--------SOMA 
-           ADD 500 TO WRK-SALDO
-               MOVE WRK-SALDO TO WRK-SALDO-ED.
-           DISPLAY "SALDO: " WRK-SALDO-ED.
-           DISPLAY "-----------------"       
+              DISPLAY WRK-NOME
+              MOVE WRK-SALDO TO WRK-SALDO-ED
+              DISPLAY "SALDO " WRK-SALDO-ED
+           ELSE
+                 EVALUATE TRUE
+                    WHEN WRK-SALDO LESS 5000
+                      DISPLAY "SALDO NAO COMPATIVEL"
+                    WHEN WRK-TIPO-CONTA NOT EQUAL 1 OR
+                         WRK-TIPO-CONTA NOT EQUAL 2
+                        DISPLAY "TIPO DE CONTA NAO EXISTE"
+                 END-EVALUATE
 
-      *--------SUBTRACAO 
-           SUBTRACT 500 FROM WRK-SALDO
-               MOVE WRK-SALDO TO WRK-SALDO-ED.
-           DISPLAY "SALDO: " WRK-SALDO-ED.
-           DISPLAY "-----------------"      
 
-      *--------MULTIPLICACAO
-           COMPUTE WRK-SALDO = WRK-SALDO * 2
-               MOVE WRK-SALDO TO WRK-SALDO-ED.
-           DISPLAY "SALDO: " WRK-SALDO-ED.
-           DISPLAY "-----------------"       
 
-      *--------DIVISION
-           DIVIDE WRK-SALDO BY 3 GIVING WRK-SALDO  
-               MOVE WRK-SALDO TO WRK-SALDO-ED.
-           DISPLAY "SALDO: " WRK-SALDO-ED.
-           DISPLAY "-----------------"      
-
-           IF WRK-SALDO GREATER THAN OR equal 5000
-               DISPLAY WRK-NOME
-               MOVE WRK-SALDO TO WRK-SALDO-ED
-               DISPLAY "SALDO " WRK-SALDO-ED
            END-IF.
 
-
-
-           STOP RUN.
+           STOP  RUN.
