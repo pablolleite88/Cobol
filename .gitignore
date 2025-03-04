@@ -1,4 +1,4 @@
 *.exe
 .vscode/launch.json
 .vscode/settings.json
-/home/pablo/projetos/Cobol/Cobol/build
+./build
